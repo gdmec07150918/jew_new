@@ -1,0 +1,9 @@
+/* pages/News/News.wxss */
+.page{height: 100%;width: 100%;}
+.new-time{text-align: center;color: #666;}
+.read{text-align: right;}
+.sign_read{text-align: right;border: 1px solid #1C86EE;display: inline-block;color: #1C86EE;border-radius: 10rpx;padding: 0 10rpx;}
+.news .newspage{border-radius: 16rpx;background-color: #f5f5f5;flex-wrap: wrap;margin: 6rpx 30rpx 16rpx;padding: 10rpx 30rpx;position: relative;}
+.newspage .newspage-title{margin: 10rpx 0;color: #000;font-weight: bold;}
+.newspage .newspage-message{color: #777;line-height: 1.2;}
+.bdage{color: #f00;}

@@ -1,0 +1,79 @@
+/* pages/fhome/fhome.wxss */
+image{width: 100%;height: 100%;}
+/* .head_box{position: fixed;top: 0;width: 100%;} */
+.header{position: relative;background-color: #fff;
+    width: 100%;
+    height: 360rpx;z-index: 9;top: 0;transition-duration: .3s;}
+.head_box{position: relative;width: 100%;height: 240rpx;background-repeat: no-repeat;
+    background-size: cover;overflow: hidden;}
+.head_seach{position: fixed; display: flex;display: -webkit-flex; width: 100%;height: 88rpx;z-index: 99}
+.head_seach .oper{width: 30rpx;height: 88rpx;}
+.head_seach .form{flex: 1;background-color: #fff;position: relative;height: 60rpx;margin: 8rpx 0;border-radius: 60rpx;display: -webkit-box; display: -webkit-flex;display: -moz-box;display: -ms-flexbox;display: flex;-webkit-box-align: center;-webkit-align-items: center;-moz-box-align: center;-ms-flex-align: center;align-items: center;}
+.head_seach .form image{padding-left: 30rpx;width: 32rpx;height: 32rpx;}
+.head_seach .form .input{
+  flex: 1;
+    outline: 0;
+    border: 0;
+    width: 100%;color: #999;
+    /* color: #232326; */
+    font-size: 28rpx;
+    height: 40rpx;
+    padding: 12rpx;}
+.bar_header{position: absolute;background-color: #000;
+    width: 100%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 240rpx;opacity: 0.3}
+.banner-content{
+  position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 0;
+    z-index: 9;line-height: 2;color: #fff;
+}
+/* .message{padding-top: 360rpx;} */
+.banner-content .weui-cell__hd{margin-right: 16rpx;}
+text.fname{background-color: #f00;padding: 0 6rpx;border-radius: 8rpx;font-size: 26rpx;}
+image.fhead{width: 114rpx;height: 114rpx;border-radius: 10rpx;}
+image.plone{width: 36rpx;height: 36rpx;margin-left: 20rpx;margin-bottom: 6rpx;}
+.collect-cnt{
+    position: relative;
+    background-color: #d0021b;
+    font-size: 30rpx;
+    width: 3.625rem;
+    height: 88rpx;
+    line-height: 88rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: right;
+    right: -30rpx;
+    color: #fff;
+    text-align: center;
+}
+.collect-cnt2{background-color: #333;}
+/* .message{padding-top: 240rpx;} */
+.weui-navbar .weui-flex__item{padding: 16rpx 0;}
+.active.weui-flex__item{border-bottom: 2px solid #f00;}
+.active{color: #f00;}
+.weui-flex__item{text-align: center;background-color: #fff;}
+.weui-navbar .weui-flex__item image{width: 44rpx;height: 44rpx;}
+.gotop{width: 56rpx;height: 56rpx;position: fixed;right: 30rpx;bottom: 100rpx;background-color: #fff;border-radius: 50%;padding: 12rpx;opacity: 0.8;}
+.goods_list.cols_2{display: flex;display: -webkit-flex;flex-wrap: wrap;background-color: #f7f7f7;}
+.goods_list.cols_2 .gs_item {position: relative;flex: 1;-webkit-box-flex: 1;flex-basis: 50%;max-width: 50%;margin-bottom: 5px;overflow: hidden;background-color: #f7f7f7;}
+/* .goods_list.cols_2 .gs_item:nth-child(n){margin-right: 3px;}
+.goods_list.cols_2 .gs_item:nth-child(2n){margin-left: 3px;margin-right: 0;} */
+.goods_list.cols_2 .gs_item .info:nth-child(n){margin-right: 3px;background-color: #fff;}
+.goods_list.cols_2 .gs_item .info:nth-child(2n){margin-right: 0;margin-left: 3px;}
+.goods_list.cols_2 .img_cover{position: relative;height: 0;padding-top: 100%;overflow: hidden;}
+.goods_list.cols_2 .img_cover image{position: absolute;width: 100%;height: 100%;top: 0;left: 0;}
+.goods_list.cols_2 .gs_item_info{padding-bottom: 10px;}
+.goods_list .gs_item_info{box-sizing: border-box;padding: 0 10px;overflow: hidden;line-height: 1;}
+.goods_list .gs_item_title,.goods_list .gs_item_price {margin-top: 8px;word-break: break-all;color: #333;line-height: 1.36;}
+.goods_list .gs_item_title{overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;height: 76rpx;white-space: normal;}
+.goods_list .gs_item_price{color: #e93b3d;font-size: 24rpx;}
+.goods_list .gs_item_price .price{font-size: 30rpx;font-weight: 400;}
+
+.goods_list.cols_2 .it_date{width: 100%;display: block;padding: 5px 15px;}

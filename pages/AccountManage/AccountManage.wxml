@@ -1,0 +1,31 @@
+<!--pages/AccountManage/AccountManage.wxml-->
+<view class='weui-cellls'>
+  <view class='weui-cells__title'>当前登录账号</view>
+  <navigator url='../ModifyInfo/ModifyInfo' class='weui-cell weui-cell_access'>
+    <view class='weui-cell__hd'>
+      <image class='userinfo-avatar' src='{{userInfo.Info.HeadImgUrl}}'></image>
+    </view>
+    <view class='weui-cell__bd'>{{userInfo.Info.UserName}}</view>
+    <view class='weui-cell__ft'></view>
+  </navigator>
+  <!-- <navigator url='' class='weui-cell weui-cell_access'>
+    <view class='weui-cell__bd'>修改登录密码</view>
+    <view class='weui-cell__ft'></view>
+  </navigator> -->
+  <navigator url='' class='weui-cell weui-cell_access'>
+    <view class='weui-cell__bd'>绑定手机号码</view>
+    <view class='weui-cell__ft'></view>
+  </navigator>
+  <navigator url='' class='weui-cell weui-cell_access'>
+    <view class='weui-cell__bd'>收货地址管理</view>
+    <view class='weui-cell__ft'></view>
+  </navigator>
+  <!-- <navigator url='' class='weui-cell weui-cell_access'>
+    <view class='weui-cell__bd'>消息配置</view>
+    <view class='weui-cell__ft'></view>
+  </navigator> -->
+  <navigator url='' class='weui-cell'>
+    <view class='weui-cell__bd'>意见反馈</view>
+    <view class='weui-cell__ft'>开发中...</view>
+  </navigator>
+</view>

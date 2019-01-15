@@ -1,0 +1,10 @@
+/* pages/AccountManage/AccountManage.wxss */
+page{
+  background: #F7F7F7;
+}
+.userinfo-avatar {
+  width:60px;
+height:60px;
+margin-right:10px;
+border-radius:50%;
+}

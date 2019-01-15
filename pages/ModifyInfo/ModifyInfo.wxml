@@ -1,0 +1,40 @@
+<!--pages/ModifyInfo/ModifyInfo.wxml-->
+<view class='weui-cells'>
+  <view class='weui-cell weui-cell_access' bindtap='headchange'>
+    <view class='weui-cell__hd'>头像</view>
+    <view class='weui-cell__bd'>
+      <image src='{{userInfo.Info.HeadImgUrl}}' class='userinfo-avatar'></image>
+    </view>
+    <view class='weui-cell__ft'></view>
+  </view>
+  <!-- <view class='weui-cell'>
+    <view class='weui-cell__hd'>昵称</view>
+    <view class='weui-cell__bd'>
+      <input value="{{userInfo.Info.NikeName}}" placeholder="请输入姓名"></input>
+    </view>
+  </view> -->
+  <view class='weui-cell'>
+    <view class='weui-cell__hd'>姓名</view>
+    <view class='weui-cell__bd'>
+      <input value="{{userInfo.Info.UserName}}" placeholder="请输入姓名"></input>
+    </view>
+  </view>
+  <view class='weui-cell weui-cell_access'>
+    <view class='weui-cell__hd'>生日</view>
+    <view class='weui-cell__bd'>
+      <picker mode="date" value='{{userInfo.Info.Birthday}}' star="1990-01-01" end="{{endDate}}" bindchange="birthdayChange">
+      <view class="picker">{{userInfo.Info.Birthday}}</view>
+      </picker>
+    </view>
+    <view class='weui-cell__ft'></view>
+  </view>
+  <!-- <view class='weui-cell'>
+    <view class='weui-cell__hd'>地区</view>
+    <view class='weui-cell__bd'>
+      <picker mode="multiSelector" value='{{area}}' bindchange="cityChange">
+      <view class="picker">{{area}}</view>
+      </picker>
+    </view>
+  </view> -->
+  <view class='weui-btn weui-btn_warn savebtn' bindtap='save'>保存</view>
+</view>

@@ -1,0 +1,19 @@
+<view class='page'>
+  <view class='weui-cell read'>
+    <view class='weui-cell__bd'></view>
+    <view class='weui-cell__ft sign_read' bindtap='SignRead'>标记已读</view>
+  </view>
+  <view wx:for="{{Rows}}" class='weui-cells news'>
+    <view class='new-time'>{{item.tm_time}}</view>
+    <view class='newspage'>
+      
+      <view class='newspage-title'>
+        {{item.tm_Title}}
+        <block wx:if="{{!item.tm_Read}}">
+          <text class='bdage'>●</text>
+        </block>
+      </view>
+      <view class='newspage-message'>{{item.tm_message}}</view>
+    </view>
+  </view>
+</view>

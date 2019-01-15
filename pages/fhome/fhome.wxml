@@ -1,0 +1,122 @@
+<!--pages/fhome/fhome.wxml-->
+<scroll-view bindscroll='scroll' scroll-y='true'>
+  <view class='header'>
+    <view id='fhead' class='head_box' style='background-image: url("https://gs.jewsoft.com/images/5a72b5c2Ne07b1ce2.jpg")'>
+      <view class='bar_header'></view>
+      <view class='head_seach'>
+        <view class='oper'></view>
+        <view class='form'>
+          <image src='../../images/main/sou.png'></image>
+          <view class='input' bindtap='searchgoods'>搜索本店商品</view>
+          <!-- <input type='text' placeholder="搜索本店商品"></input> -->
+        </view>
+        <view class='oper'></view>
+      </view>
+      <view class='banner-content'>
+        <view class='weui-cell'>
+          <view class='weui-cell__hd'>
+            <image class='fhead' src='https://gs.jewsoft.com/{{Finfo.Info.Logo}}'></image>
+          </view>
+          <view class='weui-cell__bd'>
+            <view>{{Finfo.Info.Name}}</view>
+            <view><text class='fname'>{{Finfo.Info.TypeName}}</text>
+              <image data-phone='{{Finfo.Info.Phone}}' class='plone' src='../../images/main/phonecall.png' bindtap='callphone'></image>
+            </view>
+          </view>
+          <view wx:if="{{collect}}" class='collect-cnt collect-cnt2' data-collect='1' bindtap='collect'>已收藏</view>
+          <view wx:else class='collect-cnt'  data-collect='0' bindtap='collect'>收藏</view>
+        </view>
+      </view>
+    </view>
+    <view class='weui-flex weui-navbar'>
+      <view class='weui-flex__item {{_thisplay2===0 ?"active":""}}' data-index='0' bindtap='changetab'>
+        <image src='../../images/main/fhome{{_thisplay2===0 ?"_r":""}}.png'></image>
+        <view>首页</view>
+      </view>
+      <view class='weui-flex__item {{_thisplay2===1?"active":""}}' data-index='1' bindtap='changetab'>
+        <image src='../../images/main/goods{{_thisplay2===1 ?"_r":""}}.png'></image>
+        <view>全部商品</view>
+      </view>
+      <view class='weui-flex__item {{_thisplay2===2 ?"active":""}}' data-index='2' bindtap='changetab'>
+        <image src='../../images/main/new{{_thisplay2===2 ?"_r":""}}.png'></image>
+        <view>上新</view>
+      </view>
+      <view class='weui-flex__item {{_thisplay2===3 ?"active":""}}' data-index='3' bindtap='changetab'>
+        <image src='../../images/main/fhome_info.png'></image>
+        <view>店铺详情</view>
+      </view>
+    </view>
+  </view>
+  <view class='weui-tab message'>
+    <view class='weui-tab__bd'>
+      <view class='weui-tab__bd-item{{_thisplay2 ===0 ? " weui-tab__bd-item--active" : ""}} '>
+        <scroll-view scroll-y="true">
+          <view wx:for="{{Finfo.Images}}" class='tabimg'>
+            <image src='https://gs.jewsoft.com/{{Finfo.Images[index].ImageURL}}' mode="widthFix"></image>
+          </view>
+        </scroll-view>
+      </view>
+      <view class='weui-tab__bd-item{{_thisplay2 === 1 ? " weui-tab__bd-item--active" : ""}}'>
+        <view class='goods_list cols_2'>
+          <navigator class='gs_item' wx:for="{{allgoods}}" url='/pages/display/display?itemsign={{allgoods[index].ItemSign}}'>
+            <view class='info'>
+              <view class='img_cover'>
+                <image src='https://gs.jewsoft.com/{{allgoods[index].ItemImage}}' lazy-load='true'></image>
+              </view>
+              <view class='gs_item_info'>
+                <view class='gs_item_title'>{{allgoods[index].ItemName}}</view>
+                <view class='gs_item_price'>￥<text class='price'>{{allgoods[index].WholePrice}}</text></view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+      <view class='weui-tab__bd-item{{_thisplay2 === 2 ? " weui-tab__bd-item--active" : ""}} '>
+        <view class='goods_list cols_2'>
+          <!-- <block class='list' wx:for="{{newitem.Items}}">
+            <view class='it_date' wx:if="{{index === 0}}">{{newitem.Items[index].Date}}</view>
+            <view wx:elif="{{newitem.Items[index].Date == newitem.Items[index-1].Date }}"></view>
+            <view class='it_date' wx:else>{{newitem.Items[index].Date}}</view>
+            <navigator class='gs_item' url='/pages/display/display?itemsign={{newitem.Items[index].ItemSign}}'>
+              <view class='img_cover'>
+                <image src='https://gs.jewsoft.com/{{newitem.Items[index].ImageSign}}' lazy-load='true'></image>
+              </view>
+              <view class='gs_item_info'>
+                <view class='gs_item_title'>{{newitem.Items[index].ItemName}}</view>
+                <view class='gs_item_price'>￥<text class='price'>{{newitem.Items[index].ItemPrice}}</text></view>
+              </view>
+            </navigator>
+          </block> -->
+          <block wx:for="{{newitem.Items}}">
+            <view class='it_date' wx:if="{{index === 0}}">{{newitem.Items[index].Date}}</view>
+            <view wx:elif="{{newitem.Items[index].Date == newitem.Items[index-1].Date }}"></view>
+            <view class='it_date' wx:else>{{newitem.Items[index].Date}}</view>
+            <navigator class='gs_item' url='/pages/display/display?itemsign={{newitem.Items[index].ItemSign}}'>
+              <view class='info'>
+                <view class='img_cover'>
+                  <image src='https://gs.jewsoft.com/{{newitem.Items[index].ImageSign}}' lazy-load='true'></image>
+                </view>
+                <view class='gs_item_info'>
+                  <view class='gs_item_title'>{{newitem.Items[index].ItemName}}</view>
+                  <view class='gs_item_price'>￥<text class='price'>{{newitem.Items[index].ItemPrice}}</text></view>
+                </view>
+              </view>
+            </navigator>
+          </block>
+        </view>
+        <!-- <view class='goods_list cols_2'>
+          <navigator class='gs_item' wx:for="{{newitem.Items}}" url='/pages/display/display?itemsign={{newitem.Items[index].ItemSign}}'>
+            <view class='img_cover'>
+              <image src='https://gs.jewsoft.com/{{newitem.Items[index].ImageSign}}' lazy-load='true'></image>
+            </view>
+            <view class='gs_item_info'>
+              <view class='gs_item_title'>{{newitem.Items[index].ItemName}}</view>
+              <view class='gs_item_price'>￥<text class='price'>{{newitem.Items[index].ItemPrice}}</text></view>
+            </view>
+          </navigator>
+        </view> -->
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<image class='gotop' src='../../images/main/gotop.png' bindtap='gotop'></image>

@@ -1,0 +1,13 @@
+<scroll-view class='bgr'>
+<view>{{test}}</view>
+  <view wx:for="{{News}}">
+    <view class='news-box'>
+      <view class='news-time__box'><text class='news-time'>{{item.art_modifyTime}}</text></view>
+      <navigator url='/pages/discoverInfo/discoverInfo?artno={{item.art_no}}' class='new-info'>
+        <image src='{{item.ImageURL}}' mode='widthFix'></image>
+        <view class='news-title'>{{item.art_Title}}</view>
+        <view class='news-content'>{{item.art_Summary}}</view>
+      </navigator>
+    </view>
+  </view>
+</scroll-view>

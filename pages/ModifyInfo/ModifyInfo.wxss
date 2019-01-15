@@ -1,0 +1,23 @@
+/* pages/ModifyInfo/ModifyInfo.wxss */
+page{background-color: #F7F3F7;}
+.weui-cells{margin-top: 0;}
+.userinfo-avatar {
+  width:60px;
+  height:60px;
+  margin-right:10px;
+  border-radius:50%;
+}
+.weui-cell__hd{width: 180rpx;}
+.savebtn{
+      z-index: 5;
+    position: fixed;
+    bottom: 24rpx;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    max-width: 560px;
+    font-size: 36rpx;
+}
+.weui-btn_warn {
+    background-color: #e64340;
+}

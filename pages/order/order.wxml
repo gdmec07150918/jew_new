@@ -1,0 +1,125 @@
+<import src="../addorderPopup/addorderPopup.wxml"/> 
+<view>
+  <!-- <view class='weui-tab'>
+    <view class='weui-flex weui-navbar' style='margin-top:20rpx;background:#fff;'>
+      <view class='weui-flex__item {{active ==1 ?"active":""}}' data-index='1' bindtap='tabselect'>
+        <image src='../../images/main/no_confirm.png'></image>
+        <view>待提交</view>
+        <i class="weui-badge">{{((tabList.tabCount.ts1 === 0)?"":tabList.tabCount.ts1)}}</i>
+      </view>
+      
+      <view class='weui-flex__item {{active ===2 ? "active"  : ""}}' data-index='2' bindtap='tabselect'>
+        <image src='../../images/main/offer.png'></image>
+        <view>待审核</view>
+        <i class="weui-badge">{{((tabList.tabCount.ts2 === 0)?"":tabList.tabCount.ts2)}}</i>
+      </view>
+
+      <view class='weui-flex__item {{active ===3 ?"active":""}}' data-index='3' bindtap='tabselect'>
+        <image src='../../images/main/obligation.png'></image>
+        <view>在产</view>
+        <i class="weui-badge">{{((tabList.tabCount.ts3 === 0)?"":tabList.tabCount.ts5)}}</i>
+      </view>
+      <view class='weui-flex__item {{active ===4 ?"active":""}}' data-index='4' bindtap='tabselect'>
+        <image src='../../images/main/no_take.png'></image>
+        <view>已发货</view>
+        <i class="weui-badge">{{((tabList.tabCount.ts5 === 0)?"":tabList.tabCount.ts5)}}</i>
+      </view>
+      <view class='weui-flex__item {{active ===0 ?"active":""}}' data-index='0' bindtap='tabselect'>
+        <image src='../../images/main/all_order.png'></image>
+        <view>全部</view>
+        <i class="weui-badge"></i>
+      </view>
+    </view>
+  </view> -->
+  <view class='box'>
+    <view class='weui-cells tabinfo'>
+      <view class='weui-cell'>
+        <view class='weui-cell__bd'>订单名称:{{tab.customNo}}</view>
+        <view class='weui-cell__ft tabStatus'>{{tab.tabStatus}}</view>
+      </view>
+      <view class='weui-cell'>订单号：{{tab.tabno}}</view>
+      <view class='weui-cell'>订单人：{{tab.tabUser}}</view>
+      <view class='weui-cell'>开单日期：{{tab.tabTime}}</view>
+      <block wx:if="{{tab.jhDate != null}}">
+        <!-- <view class='weui-cell'>{{(DefaultAdr === null ) ? "" : "收货地址：" + DefaultAdr.adrName}}</view> -->
+        <view class='weui-cell'>{{(tab.jhDate === null ) ? "" : "交货时间：" + tab.jhDate }}</view>
+      </block>
+    </view>
+  </view> 
+  <view class='box goods_list'>
+    <view class='weui-cells tablist'>
+      <view class='gs_message' wx:for="{{tab.goods}}" wx:for-index="index">
+        <view></view>
+        <navigator hover-class="other-navigator-hover" url='/pages/display/display?itemsign={{item.sign}}'>
+          <view class='weui-cell'>
+            <view class='weui-cell__hd'>
+              <view class='img_div'>
+                <image src='https://gs.jewsoft.com/{{item.imageURL}}'></image>
+              </view>
+            </view>
+            <view class='weui-cell__bd'>
+              <view class="itemname">{{item.name}}</view>
+              <view>成色:{{item.purity}}</view>
+              <view>字印：{{item.word}}<text class='price'>￥{{handInchs[index].money}}</text></view>
+              <view>合计: {{handInchs[index].count}}件  {{handInchs[index].weight}}g
+              </view>
+              <view>做货要求：{{item.ask}}</view>
+            </view>
+          </view>
+        </navigator>
+        <view class='weui-cell modify'>
+          <view class='weui-cell__hd'><view class='modify-left'></view></view>
+          <view class='weui-cell__bd'>
+            <view class='btn-modify' data-index='{{index}}' catchtap='displayhands'>展开手寸</view>
+          </view>
+          <view class='weui-cell__bd'>
+            <block wx:if="{{action.modify}}">
+              <view class='btn-modify order' data-sign='{{item.sign}}' catchtap='openOrderPopup'>修改</view>
+              <view class='btn-modify more' data-wtgSigns='{{item.wtgSign}}' catchtap='more_modify'>更多</view>
+            </block>
+          </view>
+        </view>
+        <view class='wxParse-table {{displayhands[index] ? "" : "displaynone"}}' >
+          <view class='wxParse-tbody'>
+            <view class='firstRow wxParse-tr'>
+              <view class='wxParse-td'>手寸</view><view class='wxParse-td'>成色</view><view class='wxParse-td'>数量(件)</view>
+              <view class='wxParse-td'>重量(g)</view><view class='wxParse-td diytd'>价钱</view>
+            </view>
+            <view class='firstRow wxParse-tr' wx:for="{{item.handInchs}}" wx:for-item="handInchs">
+              <view class='wxParse-td'>{{handInchs.handInchID === 0 ? "—" : handInchs.handInch}}</view><view class='wxParse-td'>{{item.purity === ""? "无" : item.purity}}</view><view class='wxParse-td'>{{handInchs.count}}</view>
+              <view class='wxParse-td'>{{handInchs.weight}}</view><view class='wxParse-td diytd'>
+              ￥{{handInchs.count === 0 ? handInchs.price + "/件" : handInchs.money}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view>
+    <view class='weui-cells'>
+      <view class='weui-cell'>
+        <view class='weui-cell__hd'>订单备注：</view>
+        <view class='weui-cell__bd'>
+          <input class='memo' placeholder="输入订单备注" value='{{tab.wordMemo}}' confirm-type="done"></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='footer'>
+    <view class='f_box'>
+      <view class='weui-flex' style='width:100%;height:100%;'>
+        <view class='weui-flex__item weui-flex__item2 totalmoney'>合计：￥{{tab.totalMoney}}</view>
+        <block wx:if="{{action.modify}}">
+          <view class='weui-flex__item edit'>编辑</view>
+        </block>
+        <block wx:if="{{action.submit}}">
+          <view class='weui-flex__item submit'>提交</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<view bindtap='publcPopup'>
+  <template is="addorderPopup" data="{{visible,thisorder,htabs}}"/>
+</view>

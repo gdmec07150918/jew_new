@@ -1,0 +1,8 @@
+
+<import src="../../wxParse/wxParse.wxml"/> 
+<view class='info'>
+  <view></view>
+  <view class='title'>{{NewsInfo.art_Title}}</view>
+  <view class='time'>{{NewsInfo.art_modifyTime}}</view>
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>

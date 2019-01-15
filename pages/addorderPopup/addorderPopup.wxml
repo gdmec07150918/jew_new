@@ -1,0 +1,73 @@
+<template name="addorderPopup">
+  <view class='weui-popup__container popup-bottom {{visible ? "weui-popup__container--visible" : ""}}'>
+    <view class='weui-popup__overlay' data-desc='close' bindtap="closePopup"></view>
+    <view class='weui-popup__modal'>
+      <view class='weui-popup__modal-head weui-cell'>
+        <view class='weui-cell__hd imgbox'>
+          <image class='goods-img' src='{{thisorder[0].ImageUrl}}' mode='aspectFit'></image>
+        </view>
+        <view class='weui-cell__bd'>
+          <view class='goods-name'>{{thisorder[0].ItemName}}</view>
+          <view class='weui-cell goods-info'>
+            <view class='weui-cell__bd gs-price'>￥{{thisorder[0].ItemPrice}}</view>
+            <view class='weui-cell__ft'>重量：{{thisorder[0].ItemWeight}}g</view>
+          </view>
+        </view>
+        <!-- <view class='weui-cell__ft'>
+          <view>重量：{{thisorder[0].ItemWeight}}g</view>
+          <view>同款已选<text>13</text>件<text>91.00</text>g</view>
+          <view>￥7000.00</view>
+        </view> -->
+      </view>
+      <view class='weui-popup__modal-content'>
+        <block wx:for="{{thisorder}}" wx:for-index="index1">
+        <view class='weui-cells goods-hands'>
+          <view class='weui-cell'>
+            <view class='weui-cell__bd'><text class='itemnumber'>{{item.ItemNumber}}</text>{{item.ItemName}}</view>
+          </view>
+          <view class='weui-cell'>
+            <view class='weui-cell__hd'>成色</view>
+            <view class='weui-cell__bd'>
+              <block wx:for="{{item.Puritys}}" wx:for-item="itemp">
+                <block wx:if="{{itemp.ID == item.purityID}}">
+                  <text class='select_text'>{{itemp.Text}}</text>
+                </block>
+              </block>
+            </view>
+            <view class='weui-cell__ft'>总件数{{item.TotalCount}}</view>
+          </view>
+          <view class='weui-cell box-line'>
+            <view class='weui-cell__hd'>手寸</view>
+            <view class='weui-cell__bd number-title'>数量</view>
+            <view class='weui-cell__ft'>在产/完成</view>
+          </view>
+          <view wx:for="{{item.HandInchCounts}}" class='weui-cell gs-count'>
+            <view class='weui-cell__hd'>{{item.HandInch}}</view>
+            <view class='weui-cell__bd'>
+              <view class='num_count'>
+                <view class='hand_minus {{item.Count == 0?"disabled":""}}' bindtap='countminus' data-index1='{{index1}}' data-index='{{index}}'></view>
+                <input value='{{item.Count}}' type='number' cursor-spacing='15' data-index1='{{index1}}' data-index='{{index}}' bindblur='countblur'></input>
+                <view class='hand_plus' bindtap='countplus' data-index1='{{index1}}' data-index='{{index}}'></view>
+              </view>
+            </view>
+            <view class='weui-cell__ft'>{{item.ProductionCount}}/{{item.FinishCount}}</view>
+          </view>
+          <view class='weui-cell'>
+            <view class=''>做货要求</view>
+            <view class='weui-cell__bd'><input class='ask' value='{{item.ask}}' cursor-spacing='15' data-index1='{{index1}}' data-index='{{index}}' bindblur='askblur'></input></view>
+          </view>
+        </view>
+        </block>
+        <view class='weui-cells history-order'>
+          <view class='weui-cell-title'>历史订单</view>
+          <view class='weui-cell htabs' wx:for="{{htabs}}">
+            <view class='weui-cell__hd'>订单号：<text>{{item.tabNo}}</text></view>
+            <view class='weui-cell__bd'><text>{{item.Count}}</text>件</view>
+            <view class='weui-cell__ft'>￥<text>{{item.Money}}</text></view>
+          </view>
+        </view>
+      </view>
+      <view class='add-order' data-desc='save' bindtap='saveorder'>保存订单</view>
+    </view>
+  </view>
+</template>

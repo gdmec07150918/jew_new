@@ -1,0 +1,6 @@
+/* pages/discoverInfo/discoverInfo.wxss */
+@import "../../wxParse/wxParse.wxss";
+.info{padding: 20rpx 30rpx;}
+.title{font-size: 36rpx;color: #000;font-weight: 600;line-height: 1.4;}
+.time{color: #999;margin: 20rpx 0;}
+.content{line-height: 1.4;padding-top: 20rpx;}

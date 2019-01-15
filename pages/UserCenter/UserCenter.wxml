@@ -1,0 +1,129 @@
+<!--pages/UserCenter/UserCenter.wxml-->
+<view wx:if="{{hasRefesh}}" style="display: flex;flex-direction: row;align-items: center;align-self: center;justify-content: center;">
+      <icon class="weui-loading"></icon><text>刷新中...</text>
+</view>
+<view style="font-size:62.5%;background:#f7f7f7;">
+  <view class="weui-cells" style='margin-top:0;'>
+    <view class="weui-cell userhead">
+      <view class="weui-cell__hd">
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo2.Info.HeadImgUrl}}" background-size="cover"></image>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="user_text">{{userInfo2.Info.UserName}}</view>
+        <picker style='padding-bottom:10rpx;' bindchange="bindPickerChange" value="{{CompanyID}}" range="{{Cmpitems.Rows}}"  range-key="CompanyName">
+          <view class="picker">{{Cmpitems.Rows[index].CompanyName}}
+          <image class='change_cmp' src='../../images/main/change_cmp.png'></image></view>
+        </picker>
+        <!-- <view class="user_text" style="font-size:12px"><span>{{userInfo2.Info.CurrCompanyName}}</span></view> -->
+        <view class="jifen" style="font-size:10px">积分：00</view>
+        <view class='navAccountManage' bindtap="onMyEvent">
+          <image src='../../images/main/set.png'></image>
+          账号管理
+        </view>
+      </view>
+      <view class="weui-cell__ft"></view>
+    </view>
+  </view>
+  
+  <view class='weui-flex' style='margin-top:20rpx;background:#fff;padding:20rpx 0;'>
+    <view class='weui-flex__item'>
+      <navigator url='/pages/orderList/orderList?status=1'>
+        <image src='../../images/main/no_confirm.png'></image>
+        <view>待提交</view>
+        <i class="weui-badge">{{((tabList.tabCount.ts1 === 0)?"":tabList.tabCount.ts1)}}</i>
+      </navigator>
+    </view>
+    
+    <view class='weui-flex__item'>
+      <navigator url='/pages/orderList/orderList?status=2'>
+        <image src='../../images/main/offer.png'></image>
+        <view>待审核</view>
+        <i class="weui-badge">{{((tabList.tabCount.ts2 === 0)?"":tabList.tabCount.ts2)}}</i>
+      </navigator>
+    </view>
+
+    <view class='weui-flex__item'>
+      <navigator url='/pages/orderList/orderList?status=4'>
+        <image src='../../images/main/obligation.png'></image>
+        <view>在产</view>
+        <i class="weui-badge">{{((tabList.tabCount.ts4 === 0)?"":tabList.tabCount.ts4)}}</i>
+      </navigator>
+    </view>
+
+    <view class='weui-flex__item'>
+      <navigator url='/pages/orderList/orderList?status=5'>
+        <image src='../../images/main/no_take.png'></image>
+        <view>已发货</view>
+        <i class="weui-badge">{{((tabList.tabCount.ts5 === 0)?"":tabList.tabCount.ts5)}}</i>
+      </navigator>
+    </view>
+    <view class='weui-flex__item'>
+      <navigator url='/pages/orderList/orderList?status=0'>
+        <image src='../../images/main/all_order.png'></image>
+        <view>全部订单</view>
+      </navigator>
+    </view>
+  </view>
+  <view class='weui-flex' style='margin-top:20rpx;background:#fff;padding:20rpx 0;'>
+    <view class='weui-flex__item'>
+      <view data-type='1' bindtap='linktoCollect'>
+        <view>{{userInfo2.other.CompanyCount}}</view>
+        <view>关注的工厂</view>
+      </view>
+    </view>
+    <view class='weui-flex__item'>
+      <view data-type='0' bindtap='linktoCollect'>
+        <view>{{userInfo2.other.GoodsCount}}</view>
+        <p>关注的商品</p>
+      </view>
+    </view>
+    <view class='weui-flex__item'>
+      <navigator url=''>
+        <view>{{userInfo2.other.ViewCount}}</view>
+        <p>浏览记录</p>
+      </navigator>
+    </view>
+  </view>
+  <view class='weui-cells'>
+    <view class='weui-cell weui-cell_access'>
+      <view class='weui-cell__bd'>企业中心</view> 
+      <view class='weui-cell__ft'></view>
+    </view>
+    <navigator class='weui-cell weui-cell_access' url='/pages/News/News'>
+      <view class='weui-cell__bd'>用户消息</view>
+      <view class='weui-cell__ft'>
+        <block wx:if="{{userInfo2.other.MessageCount != 0}}">
+          <text class="weui-badge">{{userInfo2.other.MessageCount}}</text>
+        </block>
+      </view>
+    </navigator>
+    <view class='weui-cell'>
+      <view class='weui-cell__bd'>客户服务</view>
+      <view class='weui-cell__ft'>开发中...</view>
+    </view>
+  </view>
+  <view class='weui-cells'>
+    <view class='weui-cell'>
+      <view class='weui-cell__bd'>为您推荐</view>
+      <view class='weui-cell__ft'></view>
+    </view>
+    <scroll-view>
+      <view>
+      <navigator  hover-class="other-navigator-hover" class="goods_li" wx:for="{{userInfo2.items}}" url='/pages/display/display?itemsign={{item.ItemSign}}' >
+        <div>
+          <div class="div_cover">
+            <image class='cover_img'  src='https://gs.jewsoft.com/{{item.ImageUrl}}' lazy-load='true'></image>
+          </div>
+          <div class="div_info">
+            <div class="name">{{item.ItemName}}</div>
+            <div class="price">
+              ￥<span class="p_span">{{item.Price}}</span>
+            </div>
+          </div>
+        </div>
+      </navigator></view>
+    </scroll-view>
+    <loading wx:if="{{showLoading}}">加载中</loading>
+  </view>
+  <!-- <navigator url='../index/index'>点击跳转</navigator> -->
+</view>

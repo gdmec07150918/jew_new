@@ -1,0 +1,125 @@
+/* pages/UserCenter/UserCenter.wxss */
+.weui-cells{margin-top: 20rpx;}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userinfo-avatar {
+  width: 60px;
+  height: 60px;
+  /* margin: 20rpx; */
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+.userhead {
+    background: -webkit-linear-gradient(left,#eb3c3c,#ff7459);
+    background: linear-gradient(90deg,#eb3c3c,#ff7459);
+    box-shadow: 0 2px 5px rgba(255,98,98,.4);
+    position: relative;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 25px 15px;
+    color: #fff;
+    /* margin-top: 0; */
+}
+.jifen{
+      font-size: 20rpx;
+    color: #fff;
+    width: fit-content;
+    background: rgba(180,50,27,.3);
+    padding: 0 20rpx;
+    border-radius: 30rpx;
+}
+.change_cmp{
+  height: 28rpx;
+  width: 28rpx;
+  margin: 2rpx 0;
+    margin-left: 10rpx;
+    vertical-align: text-bottom;
+    padding: 0 12rpx;
+    border-radius: 30rpx;
+    background: rgba(180,50,27,.3);
+}
+.user_text{
+  color: #fff;
+  padding-bottom: 3px;
+}
+.navAccountManage{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: rgba(76,0,0,.7);
+}
+.navAccountManage image{
+    width: 13px;
+    vertical-align: middle;
+    margin-bottom: 3px;
+    opacity: .7;
+    height:13px;
+}
+.goods_li{
+    float: left;
+    position: relative;
+    width: 48%;
+    padding-bottom: 0.3125rem;
+    background: #fff;
+    margin: 0.4375rem 0.4% 0 1.2%;
+}
+.div_cover{
+    width: 100%;
+    height: 0;
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+}
+.div_cover .cover_img{
+  width:360rpx;
+  height:360rpx;
+  display:inline-block;
+  overflow:hidden;
+
+}
+.div_info .name {
+    padding: 0 .5rem;
+    margin: .375rem 0 .1875rem 0;
+    font-size: .875rem;
+    color: #333;
+    line-height: 1rem;
+    height: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.div_info .price {
+    padding-left: .5rem;
+    font-size: .625rem;
+    color: #e4393c;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: arial;
+    line-height: 1.25rem;
+}
+.div_info .price span {
+    font-size: .9375rem;
+}
+.weui-flex__item{text-align:center;background: #fff;}
+.weui-flex__item image{width: 36rpx;height: 36rpx;vertical-align: middle;}
+.weui-flex__item view{font-weight: 700;font-size: 32rpx;}
+.weui-flex__item view{ font-weight: 500;font-size: 28rpx;}
+.weui-flex__item .weui-badge{position: absolute;top: -12rpx;}
+.weui-flex__item .weui-badge:empty{display: none;}

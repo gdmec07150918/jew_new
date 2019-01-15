@@ -1,0 +1,121 @@
+<scroll-view class='weui-tab'>
+  <view class='weui-flex weui-navbar'>
+    <view class='weui-flex__item {{_thisplay===0 ?"active":""}}' data-index='0' bindtap='changetab'>商品</view>
+    <view class='weui-flex__item {{_thisplay===1 ?"active":""}}' data-index='1' bindtap='changetab'>工厂</view>
+  </view>
+  <view class='weui-tab__bd'>
+      <view class='weui-tab__bd-item{{_thisplay ===0 ? " weui-tab__bd-item--active" : ""}} '>
+        <view class='weui-flex v_box'>
+          <view class='weui-flex__item'>
+            <view class='type'>
+              <text>全部工厂</text>
+              <image class='more' src='../../images/main/more_2.png'></image>
+            </view>
+          </view>
+          <view class='weui-flex__item'>
+            <view class='type'>
+              <text>分类</text>
+            </view>
+          </view>
+        </view>
+        <view class='weui-cell edit'>
+          <view class='weui-cell__bd'>共<text class='gs_number'>{{goods.Goods_Count}}</text>件商品</view>
+          <view class='weui-cell__ft' bindtap='edit'>{{edit ? "完成" : "编辑"}}</view>
+        </view>
+        <view class='backg'>
+          <block wx:if="{{!edit}}">
+          <!-- 带连接 -->
+            <navigator bindtap='notonav' wx:for="{{goods.Goods}}" class='weui-cell goods_l v_box' url='/pages/display/display?itemsign={{goods.Goods[index].ItemSign}}' open-type='navigate' hover-class="none">
+              <view class='weui-cell__bd gs_bd'>
+                <view class='weui-cell__hd'>
+                  <image src='https://gs.jewsoft.com/{{goods.Goods[index].ImageSign}}'></image>
+                </view>
+                <view class='gs_desc'>
+                  <view class='title'>{{goods.Goods[index].ItemName}}</view>
+                  <view class='desc'>{{goods.Goods[index].ItemDesc}}</view>
+                  <view class='act'>
+                    <!-- <text>{{goods.Goods[index].PromotionInfo}}</text> -->
+                  </view>
+                  <view class='price'>￥{{goods.Goods[index].ItemPrice}}</view>
+                  <view class='weui-cell__ft'>找相似</view>
+                </view>
+              </view>
+            </navigator>
+          </block>
+          <block wx:else>
+          <!-- 复选框 -->
+            <checkbox-group bindchange="gscollectChange">
+              <label wx:for="{{goods.Goods}}" class='weui-cell goods_l v_box' url='/pages/display/display?itemsign={{goods.Goods[index].ItemSign}}' open-type='navigate' hover-class="none">
+                <view style='position:absolute;'><checkbox value='{{goods.Goods[index].ItemSign}}' checked="{{select ? true: false}}"></checkbox></view>
+                <view class='weui-cell__bd gs_bd' style='transform: translateX(70rpx);'>
+                  <view class='weui-cell__hd'>
+                    <image src='https://gs.jewsoft.com/{{goods.Goods[index].ImageSign}}'></image>
+                  </view>
+                  <view class='gs_desc'>
+                    <view class='title'>{{goods.Goods[index].ItemName}}</view>
+                    <view class='desc'>{{goods.Goods[index].ItemDesc}}</view>
+                    <view class='act'>
+                      <!-- <text>{{goods.Goods[index].PromotionInfo}}</text> -->
+                    </view>
+                    <view class='price'>￥{{goods.Goods[index].ItemPrice}}</view>
+                    <view class='weui-cell__ft'>找相似</view>
+                  </view>
+                </view>
+              </label>
+            </checkbox-group>
+          </block>
+          <view class='v_box nopd'>
+            <view class='weui-cells__title'>猜你喜欢</view>
+            <view class='goods_list cols_2'>
+              <navigator wx:for="{{goods.rmd_Goods}}" class='gs_item' url='/pages/display/display?itemsign={{goods.rmd_Goods[index].ItemSign}}'>
+                <view class='img_cover'>
+                  <image src='https://gs.jewsoft.com/{{goods.rmd_Goods[index].ImageUrl}}'></image>
+                </view>
+                <view class='gs_item_info'>
+                  <view class='gs_item_title'>{{goods.rmd_Goods[index].ItemName}}</view>
+                  <view class='gs_item_price'>￥<text class='price'>{{goods.rmd_Goods[index].Price}}</text></view>
+                </view>
+              </navigator>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='weui-tab__bd-item{{_thisplay ===1 ? " weui-tab__bd-item--active" : ""}} '>
+        
+        <view class='weui-cells comp'>
+          <view wx:for="{{goods.Company}}" class='weui-cell'>
+            <view class='weui-cell__hd'>
+              <image src="https://gs.jewsoft.com/{{item.ImageSign}}" mode='aspectFit' class='compimg'></image>
+            </view>
+            <view class='weui-cell__bd'>{{item.CompanyName}}</view>
+            <view class='weui-cell__ft' bindtap='removecollect' data-sign='{{item.CompanySign}}'><image class='more' src='../../../images/main/more.png'></image></view>
+          </view>
+        </view>
+        <view class='weui-cell edit'>推荐工厂
+          <block wx:if="{{goods.rmd_Company.length == 0}}"><text>（无）</text></block>
+        </view>
+        <view class='weui-cells comp'>
+          <view wx:for="{{goods.rmd_Company}}" class='weui-cell'>
+            <view class='weui-cell__hd'>
+              <image src="https://gs.jewsoft.com/{{item.CLogo}}" mode='aspectFit' class='compimg'></image>
+            </view>
+            <view class='weui-cell__bd'>{{item.CName}}</view>
+            <view class='weui-cell__ft' bindtap='cmpcollect' data-sign='{{item.CSign}}'><image class='more' src='../../../images/tarbar/star.png'></image></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{edit}}">
+      <view class='weui-flex edit_foot'>
+        <view class='weui-flex__item'>
+          <label class='allselect_lb' bindtap='allselect'>
+            <checkbox checked="{{allselect ? true: false}}"></checkbox>
+            <text class='allselect'>全选</text> 
+          </label>
+        </view>
+        <view class='weui-flex__item'>
+          <view class='nocollect' bindtap='noCollect'>取消关注</view>
+        </view>
+      </view>
+    </block>
+</scroll-view>

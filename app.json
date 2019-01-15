@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/searchGoods/searchGoods",
+    "pages/grid/grid",
+    "pages/UserCenter/UserCenter",
+    "pages/collect/collect",
+    "pages/ModifyInfo/ModifyInfo",
+    "pages/order/order",
+    "pages/display/display",
+    "pages/discover/discover",
+    "pages/orderList/orderList",
+    "pages/News/News",
+    "pages/fhome/fhome",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/cart/cart",
+    "pages/AccountManage/AccountManage",
+    "pages/discoverInfo/discoverInfo"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "珠宝平台",
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": 50,
+    "backgroundColor": "#ffffff",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/fhome/fhome",
+        "text": "工厂主页",
+        "iconPath": "images/tarbar/fhome.png",
+        "selectedIconPath": "images/tarbar/fhome_active.png"
+      },
+      {
+        "pagePath": "pages/discover/discover",
+        "text": "新发现",
+        "iconPath": "images/tarbar/discover.png",
+        "selectedIconPath": "images/tarbar/discover-active.png"
+      },
+      {
+        "pagePath": "pages/UserCenter/UserCenter",
+        "text": "我的",
+        "iconPath": "images/tarbar/user.png",
+        "selectedIconPath": "images/tarbar/user_f.png"
+      }
+    ],
+    "position": "bottom",
+    "color": "#666",
+    "selectedColor": "#ffb03f"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
+}

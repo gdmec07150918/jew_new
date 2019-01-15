@@ -1,0 +1,131 @@
+<import src="../addorderPopup/addorderPopup.wxml"/> 
+<scroll-view class='page' style="100%" scroll-y="true" scroll-top="{{scrolltop}}" scroll-with-animation="true">
+  <view class='head weui-flex weui-navbar'>
+    <view class='weui-flex__item {{_thisplay2===0 ?"active":""}}' data-id='main' data-index='0' bindtap='changetab'>商品</view>
+    <view class='weui-flex__item {{_thisplay2===1?"active":""}}' data-id='boms' data-index='1' bindtap='changetab'>详情</view>
+    <view class='weui-flex__item {{_thisplay2===2 ?"active":""}}' data-id='parm' data-index='2' bindtap='changetab'>参数</view>
+  </view>
+  <view class='swiper'>
+    <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#ffb03f">
+      <block wx:for="{{Image0}}">
+        <swiper-item>
+          <image src="https://gs.jewsoft.com/{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- <button bindtap="changeIndicatorDots"> indicator-dots </button>
+    <button bindtap="changeAutoplay"> autoplay </button>
+    <slider bindchange="intervalChange" show-value min="500" max="2000"/> interval
+    <slider bindchange="durationChange" show-value min="1000" max="10000"/> duration -->
+  </view>
+  <view class='main_info weui-cells'>
+    <!-- 主要信息 -->
+    <view class='scroll-view-item gs' id='main'>
+      <view class='weui-cell info_np mar_t'>
+        <view class='weui-cell__bd'>
+          <view>{{goods_news.Main.ItemName}}</view>
+          <view>
+            <text class="admin_c">批发价:￥{{goods_news.Main.ItemWholePrice}}</text>
+            <text>（零售价:￥{{goods_news.Main.ItemLabelPrice}}）</text>
+          </view>
+        </view>
+        <view class='weui-cell__ft tlove' bindtap="tlove">
+          <image src="../../images/main/icon-25{{istlove ? 'r' : ''}}.png"></image>
+          <view>关注</view>
+        </view>
+      </view>
+      <view class='weui-cell mar_t'>
+        <view class='weui-cell__hd'><view class='weui-label'>标准手寸</view></view>
+        <view class='weui-cell__bd'>{{goods_news.GoodsStandard.Name}}</view>
+      </view>
+      <view class='weui-cell mar_t'>
+        <view class='weui-cell__hd'><view class='weui-label'>促销</view></view>
+        <view class='weui-cell__bd'><text class='goods_xs_cs'>{{goods_news.Factory.PromotionInfo}}</text></view>
+      </view>
+      <view class='weui-cell mar_t'>
+        <view class='weui-cell__hd'><image class='cmplogo' src="https://gs.jewsoft.com/{{goods_news.Factory.Logo}}"></image></view> 
+        <view class='weui-cell__bd cmp_info'>
+          <view>{{goods_news.Factory.CompanyName}}</view>
+          <text selectable='true'>{{goods_news.Factory.CompanyPhone}}</text>
+        </view>
+        <view class='weui-cell__ft'>
+          <view class='fac_cell'>
+            <!-- <navigator></navigator>
+            <navigator></navigator> -->
+            <view>全部商品</view>
+            <view>进入店铺</view>
+          </view>
+        </view> 
+      </view>
+    </view>
+    <view class='scroll-view-item weui-tab mar_t' id='boms'>
+      <view class='weui-flex weui-navbar'>
+        <view class='weui-flex__item {{_thisplay ===0 ? "weui-bar__item--on":""}}' bindtap='changenavt' data-index='0'>商品介绍</view>
+        <view class='weui-flex__item {{_thisplay ===1 ? "weui-bar__item--on":""}}' bindtap='changenavt' data-index='1'>物料明细</view>
+        <view class='weui-flex__item {{_thisplay ===2 ? "weui-bar__item--on":""}}' bindtap='changenavt' data-index='2'>价格明细</view>
+      </view>
+      <view class="weui-tab__bd">
+        <view class='weui-tab__bd-item {{_thisplay ===0 ? "weui-tab__bd-item--active":""}}' data-index='0'>
+          <scroll-view scroll-y="true">
+            <block wx:if="{{goods_news.Image.length >0}}">
+              <view wx:for="{{goods_news.Image1}}" class='tabimg'>
+                <image src='https://gs.jewsoft.com/{{item}}' mode="widthFix"></image>
+              </view>
+            </block>
+            <block wx:else>
+              <view class='weui-cell'>暂无商品介绍</view>
+            </block>
+          </scroll-view>
+        </view>
+        <view class='weui-tab__bd-item {{_thisplay ===1 ? "weui-tab__bd-item--active":""}}' data-index='1'>
+          <view class='table'>
+            <view class='tr'>
+              <view class='td'>类型</view><view class='td'>描述</view><view class='td'>数量</view>
+              <view class='td'>重量(g)</view><view class='td'>单位</view>
+            </view>
+            <view class='tr' wx:for="{{goods_news.Boms}}">
+              <view class='td'>{{item.BomTypeIDText}}</view><view class='td'>{{item.BomDesc}}</view><view class='td'>{{item.BomCount}}</view>
+              <view class='td'>{{item.BomWeight}}</view><view class='td'>{{item.BomUnitName}}</view>
+            </view>
+          </view>
+        </view>
+        <view class='weui-tab__bd-item {{_thisplay ===2 ? "weui-tab__bd-item--active":""}}' data-index='2'>
+          <view class='table'>
+            <view class='tr'>
+              <view class='td'>计价方式</view><view class='td'>类型</view><view class='td'>规格</view>
+              <view class='td'>数量</view><view class='td'>重量(g)</view><view class='td'>批发价</view>
+            </view>
+            <view class='tr' wx:for="{{goods_news.Prices}}">
+              <view class='td'>{{item.ipdCalcTypeText}}</view><view class='td'>{{item.ipdPriceTypeText}}</view><view class='td'>{{item.ipdSpecDesc}}</view>
+              <view class='td'>{{item.ipdCount}}</view><view class='td'>{{item.ipdWeight}}</view><view class='td'>{{item.Price}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='weui-tab mar_t' id='parm'>
+      <view class='module_title'>商品参数</view>
+      <view class='parm_info_tab'>
+        <view class='parm_info' wx:for="{{goods_news.Detail}}" wx:for-item="item" wx:for-index="index">
+          <view>{{index}}</view><view>{{item}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class='footer'>
+    <view class='f_box'>
+      <view class='weui-flex' style='width:100%;height:100%;'>
+        <view class='weui-flex__item'>
+          <image src='../../images/main/fhome.png'></image>
+          <view>进店</view>
+        </view>
+        <view class='weui-flex__item submit' bindtap='openOrderPopup'>加入订单</view>
+        <view class='weui-flex__item edit' bindtap='linkorder' >当前订单</view>
+      </view>
+    </view>
+  </view>
+<view bindtap='publcPopup'>
+  <template is="addorderPopup" data="{{visible,thisorder,htabs}}"/>
+</view>
