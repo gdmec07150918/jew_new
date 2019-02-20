@@ -1,0 +1,51 @@
+<view class='weui-cells'>
+  <view class='weui-cell'>
+    <view class='weui-cell__hd'>收货人</view>
+    <view class='weui-cell__bd'>
+      <input type='text' class='weui-input' placeholder="收货人名称" confirm-type="next" value='{{AdressInfo.PersonName}}' data-name='pserson_name' bindinput='keyvalue'></input>
+    </view>
+  </view>
+  <view class='weui-cell'>
+    <view class='weui-cell__hd'>手机号码</view>
+    <view class='weui-cell__bd'>
+      <input type='number' class='weui-input' placeholder="收货人手机" confirm-type="next" value='{{AdressInfo.Phone}}' data-name='phone' bindinput='keyvalue'></input>
+    </view>
+  </view>
+  <view class='weui-cell'>
+    <view class='weui-cell__hd'>所在地区</view>
+    <view class='weui-cell__bd'>
+      <picker mode="region"></picker>
+      <picker bindchange="changeRegin" mode="region" value="{{region}}">
+        <view class="tui-picker-detail">{{region[0]}} - {{region[1]}} - {{region[2]}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class='weui-cell top'>
+    <view class='weui-cell__hd'>详细地址</view>
+    <view class='weui-cell__bd'>
+      <textarea class='weui-textarea' placeholder="输入详细地址" auto-height="{{true}}" value='{{AdressInfo.Address}}' data-name='adress' bindinput='keyvalue'></textarea>
+      <!-- <input type='text' class='weui-input' placeholder="收货人手机" confirm-type="next"></input> -->
+    </view>
+  </view>
+  <view class='weui-cell'>
+    <view class='weui-cell__hd'>邮政编码</view>
+    <view class='weui-cell__bd'>
+      <input type='text' class='weui-input' placeholder="邮政编码" confirm-type="next" value='{{AdressInfo.ZipCode}}' data-name='zipcode' bindinput='keyvalue'></input>
+    </view>
+  </view>
+  <view class='weui-cell'>
+    <view class='weui-cell__hd'>地址名称</view>
+    <view class='weui-cell__bd'>
+      <input type='text' class='weui-input' placeholder="地址名称" confirm-type="done" value='{{AdressInfo.CAddressName}}' data-name='adr_name' bindinput='keyvalue'></input>
+    </view>
+  </view><view class='weui-cell'>
+    <view class='weui-cell__bd'>默认地址</view>
+    <view class='weui-cell__ft'>
+      <switch checked="{{IsDefault}}" bindchange="defaultChange" />
+    </view>
+  </view>
+</view>
+<button class='save' bindtap='save' type="warn">保存</button>
+<block wx:if="{{adressid != -1}}">
+  <button class='delete' bindtap='delete' type="default">删除收货地址</button>
+</block>

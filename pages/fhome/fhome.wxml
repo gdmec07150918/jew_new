@@ -1,8 +1,7 @@
 <!--pages/fhome/fhome.wxml-->
 <scroll-view bindscroll='scroll' scroll-y='true'>
   <view class='header'>
-    <view id='fhead' class='head_box' style='background-image: url("https://gs.jewsoft.com/images/5a72b5c2Ne07b1ce2.jpg")'>
-      <view class='bar_header'></view>
+    <view id='fhead' class='head_box' style='background-image: url("{{headerImg}}")'>
       <view class='head_seach'>
         <view class='oper'></view>
         <view class='form'>
@@ -15,7 +14,7 @@
       <view class='banner-content'>
         <view class='weui-cell'>
           <view class='weui-cell__hd'>
-            <image class='fhead' src='https://gs.jewsoft.com/{{Finfo.Info.Logo}}'></image>
+            <image class='fhead' src='https://jl.jewsoft.com/{{Finfo.Info.Logo}}'></image>
           </view>
           <view class='weui-cell__bd'>
             <view>{{Finfo.Info.Name}}</view>
@@ -52,7 +51,7 @@
       <view class='weui-tab__bd-item{{_thisplay2 ===0 ? " weui-tab__bd-item--active" : ""}} '>
         <scroll-view scroll-y="true">
           <view wx:for="{{Finfo.Images}}" class='tabimg'>
-            <image src='https://gs.jewsoft.com/{{Finfo.Images[index].ImageURL}}' mode="widthFix"></image>
+            <image src='https://jl.jewsoft.com/{{Finfo.Images[index].ImageURL}}' mode="widthFix"></image>
           </view>
         </scroll-view>
       </view>
@@ -61,11 +60,11 @@
           <navigator class='gs_item' wx:for="{{allgoods}}" url='/pages/display/display?itemsign={{allgoods[index].ItemSign}}'>
             <view class='info'>
               <view class='img_cover'>
-                <image src='https://gs.jewsoft.com/{{allgoods[index].ItemImage}}' lazy-load='true'></image>
+                <image src='https://jl.jewsoft.com/{{allgoods[index].ItemImage}}' mode='aspectFit' lazy-load='{{lazyload}}'></image>
               </view>
               <view class='gs_item_info'>
                 <view class='gs_item_title'>{{allgoods[index].ItemName}}</view>
-                <view class='gs_item_price'>￥<text class='price'>{{allgoods[index].WholePrice}}</text></view>
+                <view class='gs_item_price'>￥<text class='price'>{{allgoods[index].Price}}</text></view>
               </view>
             </view>
           </navigator>
@@ -79,7 +78,7 @@
             <view class='it_date' wx:else>{{newitem.Items[index].Date}}</view>
             <navigator class='gs_item' url='/pages/display/display?itemsign={{newitem.Items[index].ItemSign}}'>
               <view class='img_cover'>
-                <image src='https://gs.jewsoft.com/{{newitem.Items[index].ImageSign}}' lazy-load='true'></image>
+                <image src='https://jl.jewsoft.com/{{newitem.Items[index].ImageSign}}' lazy-load='true'></image>
               </view>
               <view class='gs_item_info'>
                 <view class='gs_item_title'>{{newitem.Items[index].ItemName}}</view>
@@ -94,7 +93,7 @@
             <navigator class='gs_item' url='/pages/display/display?itemsign={{newitem.Items[index].ItemSign}}'>
               <view class='info'>
                 <view class='img_cover'>
-                  <image src='https://gs.jewsoft.com/{{newitem.Items[index].ImageSign}}' lazy-load='true'></image>
+                  <image src='https://jl.jewsoft.com/{{newitem.Items[index].ImageSign}}' lazy-load='true'></image>
                 </view>
                 <view class='gs_item_info'>
                   <view class='gs_item_title'>{{newitem.Items[index].ItemName}}</view>
@@ -107,7 +106,7 @@
         <!-- <view class='goods_list cols_2'>
           <navigator class='gs_item' wx:for="{{newitem.Items}}" url='/pages/display/display?itemsign={{newitem.Items[index].ItemSign}}'>
             <view class='img_cover'>
-              <image src='https://gs.jewsoft.com/{{newitem.Items[index].ImageSign}}' lazy-load='true'></image>
+              <image src='https://jl.jewsoft.com/{{newitem.Items[index].ImageSign}}' lazy-load='true'></image>
             </view>
             <view class='gs_item_info'>
               <view class='gs_item_title'>{{newitem.Items[index].ItemName}}</view>

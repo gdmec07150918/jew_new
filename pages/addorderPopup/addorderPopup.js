@@ -22,7 +22,7 @@ var addorderPopup = {
       }
     }
     wx.request({
-      url: 'https://gs.jewsoft.com/ASHX/TabServer.ashx?m=modifytabGoods&tabno=' + tabno + "&t=" + Number(new Date()),
+      url: 'https://jl.jewsoft.com/ASHX/TabServer.ashx?m=modifytabGoods&tabno=' + tabno + "&t=" + Number(new Date()),
       data: JSON.stringify(model),
       method: "POST",
       header: {

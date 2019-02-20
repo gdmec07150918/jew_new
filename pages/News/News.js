@@ -20,7 +20,7 @@ Page({
   downData: function () {
     var that = this
     wx.request({
-      url: 'https://gs.jewsoft.com/Ashx/UserServer.ashx?m=userMessageList',
+      url: 'https://jl.jewsoft.com/Ashx/UserServer.ashx?m=userMessageList',
       data: {
         "pid": this.data.pid, "psize": this.data.Need_loadsize, "type": "", "t": Number(new Date())
       },
@@ -47,7 +47,7 @@ Page({
       success: function (options) {
         if (options.confirm){
           wx.request({
-            url: 'https://gs.jewsoft.com/Ashx/UserServer.ashx?m=userMessageRead',
+            url: 'https://jl.jewsoft.com/Ashx/UserServer.ashx?m=userMessageRead',
             data: {
               "ids": "all", "csign": "", "type": "", "t": Number(new Date())
             },

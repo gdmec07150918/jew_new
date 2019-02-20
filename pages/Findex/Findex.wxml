@@ -1,0 +1,59 @@
+<view>
+  <view>
+    <view class='bar_header'></view>
+    <view class='head_seach'>
+      <view class='oper'>
+        <image src='../../images/main/jewsoft.png' mode='widthFix' class='logo'></image>
+      </view>
+      <navigator class='form' url='/pages/searchGoods/searchGoods'>
+        <image src='../../images/main/sou.png'></image>
+        <view class='input' bindtap='searchgoods'>搜索平台商品/工厂名称</view>
+        <!-- <input type='text' placeholder="搜索本店商品"></input> -->
+      </navigator>
+      <view class='oper'></view>
+    </view>
+    <swiper indicator-dots="{{true}}" indicator-active-color="#ffb03f" autoplay="{{true}}" circular="{{true}}" class='swiper'>
+      <block wx:for="{{swiperImg}}">
+        <swiper-item>
+          <image class="swiper-item" mode="aspectFill" src='https://jl.jewsoft.com/{{item.ImageURL}}'></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='collect'>
+      <view class='collect-overflow'>
+        <navigator hover-class="none" class='collect-fac-item' url='/pages/collect/collect?fsign=1'>
+          <image mode='widthFix' src='../../images/main/fav.png'></image>
+        </navigator>
+        <navigator wx:for="{{FactoryCollection}}" class='collect-fac-item' hover-class="none" url='/pages/fhome/fhome?fsign={{item.SID}}'>
+          <image mode='aspectFill' src='https://jl.jewsoft.com/{{item.Img}}'></image>
+          <view class='fac-name'>{{item.Name}}</view>
+        </navigator>
+      </view>
+    </view>
+    <view>
+      <view class='weui-cell' url='/pages/grid/grid?txt=' hover-class="navigator-hover">
+        <view class='weui-cell__bd' style='text-align:center;font-size:32rpx;'>推荐产品</view>
+        <!-- <view class='weui-cell__ft' style='color:#2d78f4;font-size:26rpx;'>更多...</view> -->
+      </view>
+      <view>
+        <view class='goods_list cols_2' style='margin-bottom:10rpx;'>
+          <navigator class='gs_item' hover-class="none" wx:for="{{goodsItem}}" url='/pages/display/display?itemsign={{goodsItem[index].SID}}'>
+            <view class='info'>
+              <view class='img_cover'>
+                <image mode='aspectFit' src='https://jl.jewsoft.com/{{goodsItem[index].Img}}' lazy-load='{{true}}'></image>
+              </view>
+              <view class='gs_item_info'>
+                <view class='gs_item_title'>{{goodsItem[index].Name}}</view>
+                <view class='gs_item_weight weui-media-box__desc'>重量:{{goodsItem[index].UnitWeight}}g
+                  <text decode="emsp">&emsp;</text>金重:{{goodsItem[index].GoldWeight}}g</view>
+                <view class='gs_item_price'>￥
+                  <text class='price'>{{goodsItem[index].Price}}</text>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -10,7 +10,7 @@
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#ffb03f">
       <block wx:for="{{Image0}}">
         <swiper-item>
-          <image src="https://gs.jewsoft.com/{{item}}" class="slide-image" />
+          <image src="https://jl.jewsoft.com/{{item}}" class="slide-image" />
         </swiper-item>
       </block>
     </swiper>
@@ -26,8 +26,8 @@
         <view class='weui-cell__bd'>
           <view>{{goods_news.Main.ItemName}}</view>
           <view>
-            <text class="admin_c">批发价:￥{{goods_news.Main.ItemWholePrice}}</text>
-            <text>（零售价:￥{{goods_news.Main.ItemLabelPrice}}）</text>
+            <text class="admin_c">批发价:￥{{goods_news.Main.Price}}</text>
+            <!-- <text>（零售价:￥{{goods_news.Main.ItemLabelPrice}}）</text> -->
           </view>
         </view>
         <view class='weui-cell__ft tlove' bindtap="tlove">
@@ -44,7 +44,7 @@
         <view class='weui-cell__bd'><text class='goods_xs_cs'>{{goods_news.Factory.PromotionInfo}}</text></view>
       </view>
       <view class='weui-cell mar_t'>
-        <view class='weui-cell__hd'><image class='cmplogo' src="https://gs.jewsoft.com/{{goods_news.Factory.Logo}}"></image></view> 
+        <view class='weui-cell__hd'><image class='cmplogo' src="https://jl.jewsoft.com/{{goods_news.Factory.Logo}}"></image></view> 
         <view class='weui-cell__bd cmp_info'>
           <view>{{goods_news.Factory.CompanyName}}</view>
           <text selectable='true'>{{goods_news.Factory.CompanyPhone}}</text>
@@ -70,7 +70,7 @@
           <scroll-view scroll-y="true">
             <block wx:if="{{goods_news.Image.length >0}}">
               <view wx:for="{{goods_news.Image1}}" class='tabimg'>
-                <image src='https://gs.jewsoft.com/{{item}}' mode="widthFix"></image>
+                <image src='https://jl.jewsoft.com/{{item}}' mode="widthFix"></image>
               </view>
             </block>
             <block wx:else>

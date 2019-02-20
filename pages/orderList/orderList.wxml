@@ -42,7 +42,7 @@
             <view class='weui-cell__ft showy'>￥{{item.totalMoney}}</view>
           </view>
           <view class='weui-cell images'>
-            <image wx:for="{{item.goodsImages}}" wx:for-item="imgl" src='https://gs.jewsoft.com/{{imgl}}' mode="aspectFit"></image>
+            <image wx:for="{{item.goodsImages}}" wx:for-item="imgl" src='https://jl.jewsoft.com/{{imgl}}' mode="aspectFit"></image>
           </view>
         </navigator>
       </view>

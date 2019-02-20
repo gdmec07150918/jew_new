@@ -25,43 +25,40 @@
     </view>
   </view>
   
-  <view class='weui-flex' style='margin-top:20rpx;background:#fff;padding:20rpx 0;'>
-    <view class='weui-flex__item'>
-      <navigator url='/pages/orderList/orderList?status=1'>
+  <view class='weui-flex' style='margin-top:20rpx;background:#fff;padding:20rpx 0;'> 
+    <view class='weui-flex__item' data-status='1' catchtap='linkOrderList'>
+      <view open-type='switchTab' url='/pages/orderList/orderList?status=1'>
         <image src='../../images/main/no_confirm.png'></image>
         <view>待提交</view>
         <i class="weui-badge">{{((tabList.tabCount.ts1 === 0)?"":tabList.tabCount.ts1)}}</i>
-      </navigator>
+      </view>
     </view>
-    
-    <view class='weui-flex__item'>
-      <navigator url='/pages/orderList/orderList?status=2'>
+    <view class='weui-flex__item' data-status='2' catchtap='linkOrderList'>
+      <view open-type='switchTab' url='/pages/orderList/orderList?status=2'>
         <image src='../../images/main/offer.png'></image>
         <view>待审核</view>
         <i class="weui-badge">{{((tabList.tabCount.ts2 === 0)?"":tabList.tabCount.ts2)}}</i>
-      </navigator>
+      </view>
     </view>
-
-    <view class='weui-flex__item'>
-      <navigator url='/pages/orderList/orderList?status=4'>
+    <view class='weui-flex__item' data-status='4' catchtap='linkOrderList'>
+      <view open-type='switchTab' url='/pages/orderList/orderList?status=4'>
         <image src='../../images/main/obligation.png'></image>
         <view>在产</view>
         <i class="weui-badge">{{((tabList.tabCount.ts4 === 0)?"":tabList.tabCount.ts4)}}</i>
-      </navigator>
+      </view>
     </view>
-
-    <view class='weui-flex__item'>
-      <navigator url='/pages/orderList/orderList?status=5'>
+    <view class='weui-flex__item' data-status='5' catchtap='linkOrderList'>
+      <view open-type='switchTab' url='/pages/orderList/orderList?status=5'>
         <image src='../../images/main/no_take.png'></image>
         <view>已发货</view>
         <i class="weui-badge">{{((tabList.tabCount.ts5 === 0)?"":tabList.tabCount.ts5)}}</i>
-      </navigator>
+      </view>
     </view>
-    <view class='weui-flex__item'>
-      <navigator url='/pages/orderList/orderList?status=0'>
+    <view class='weui-flex__item' data-status='0' catchtap='linkOrderList'>
+      <view open-type='switchTab' url='/pages/orderList/orderList?status=0'>
         <image src='../../images/main/all_order.png'></image>
         <view>全部订单</view>
-      </navigator>
+      </view>
     </view>
   </view>
   <view class='weui-flex' style='margin-top:20rpx;background:#fff;padding:20rpx 0;'>
@@ -112,7 +109,7 @@
       <navigator  hover-class="other-navigator-hover" class="goods_li" wx:for="{{userInfo2.items}}" url='/pages/display/display?itemsign={{item.ItemSign}}' >
         <div>
           <div class="div_cover">
-            <image class='cover_img'  src='https://gs.jewsoft.com/{{item.ImageUrl}}' lazy-load='true'></image>
+            <image class='cover_img'  src='https://jl.jewsoft.com/{{item.ImageUrl}}' lazy-load='true'></image>
           </div>
           <div class="div_info">
             <div class="name">{{item.ItemName}}</div>
@@ -127,3 +124,4 @@
   </view>
   <!-- <navigator url='../index/index'>点击跳转</navigator> -->
 </view>
+

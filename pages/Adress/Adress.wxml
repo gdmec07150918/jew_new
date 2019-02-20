@@ -1,0 +1,20 @@
+<view class='weui-cells'>
+  <view class='weui-cell' wx:for="{{Adress}}">
+    <view class='weui-cell__bd'>
+      <view>{{item.PersonName}}
+        <text class='phone'>{{item.Phone}}</text>
+      </view>
+      <view class='adress'>
+        <block wx:if="{{item.IsDefault}}">
+          <text class="default">默认</text>
+        </block> {{item.ProvinceText}}
+        <text space="emsp"></text>{{item.CityText}}
+        <text space="emsp"></text>{{item.CountyText}}
+        <text space="emsp"></text>{{item.Address}}</view>
+    </view>
+    <navigator class='weui-cell__ft' url='/pages/EditAdress/EditAdress?adressid={{item.CAddressID}}'>编辑</navigator>
+  </view>
+</view>
+<navigator url='/pages/EditAdress/EditAdress'>
+  <button class='addadress' bindtap='add' type="warn">添加地址</button>
+</navigator>

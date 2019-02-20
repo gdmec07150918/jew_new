@@ -30,13 +30,13 @@ Page({
   },
   onLoad: function () {
     wx.request({
-      url: 'https://gs.jewsoft.com/Ashx/UserServer.ashx?m=logon',
+      url: 'https://jl.jewsoft.com/Ashx/UserServer.ashx?m=logon',
       data: {
         "Phone": "13113485015", "Password": "123456", "t": Math.round(Math.random() * 10000)
       },
       method: "POST",
       success: function (res) {
-        console.log(res);
+        // console.log(res);
       }
     })
     // wx.login({
@@ -62,7 +62,7 @@ Page({
       })
     }
     wx.request({
-      url: 'https://gs.jewsoft.com/Ashx/TabServer.ashx?m=tabListPage',
+      url: 'https://jl.jewsoft.com/Ashx/TabServer.ashx?m=tabListPage',
       data: {
         "pid": 1, "psize": 0, "tabStatus": 0, "t": Math.round(Math.random() * 10000)
       },
@@ -76,7 +76,7 @@ Page({
       }
     })
     wx.request({
-      url: 'https://gs.jewsoft.com/Ashx/UserServer.ashx?m=getUserCompany',
+      url: 'https://jl.jewsoft.com/Ashx/UserServer.ashx?m=getUserCompany',
       data: {
         "t": Math.round(Math.random() * 10000)
       },
@@ -131,11 +131,11 @@ Page({
   },
   //跳转收藏
   linktoCollect: function (e) {
-    console.log(e)
+    // console.log(e)
     var type =  parseInt(e.currentTarget.dataset.type)
     app.globalData.collect_type=type
-    wx.switchTab({
-      url: "/pages/collect/collect"
+    wx.navigateTo({
+      url: "/pages/collect/collect?fsign=" + type
     })
   },
   //下拉刷新
@@ -162,7 +162,7 @@ Page({
     //获取该下标的企业id
     var cid = this.data.Cmpitems.Rows[index].CompanyID
     wx.request({
-      url: 'https://gs.jewsoft.com/Ashx/UserServer.ashx?m=modifyCurrentCompany',
+      url: 'https://jl.jewsoft.com/Ashx/UserServer.ashx?m=modifyCurrentCompany',
       data: {
         "CompanyID": cid,"t": Math.round(Math.random() * 10000)
       },
@@ -200,6 +200,15 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  //跳转订单列表
+  linkOrderList: function (e) {
+    var status = parseInt(e.currentTarget.dataset.status);
+    console.log(status)
+    app.globalData.orderStatus = status;
+    wx.switchTab({
+      url: '/pages/orderList/orderList',
     })
   }
 })

@@ -1,14 +1,17 @@
 <!--pages/grid/grid.wxml-->
 <view>
-  <view class='header' style='top: 0rpx'><!-- {{showheader ? "0" : "-100"}} -->
+  <view class='header' style='top: 0rpx'>
+    <!-- {{showheader ? "0" : "-100"}} -->
     <view class='search_sprites weui-cell'>
       <view class='weui-cell__bd inputbox'>
         <view class='weui-cell'>
-          <view class='weui-cell__bd inputdiv' catchtap='navigateBack1'>{{txt}}</view>
-          <view class='weui-cell__ft'>
-            <image style='width:48rpx;height:36rpx;' class='icon' src='../../images/main/sprites.png'></image>
-            <view style='font-size:24rpx;'>筛选</view>
-          </view>
+          <view class='weui-cell__bd inputdiv ' catchtap='navigateBack1'>{{txt == "" ? "全部商品" : txt}}</view>
+          <navigator url='/pages/filter/filter' hover-class="none">
+            <view class='weui-cell__ft' style='padding-left:20rpx;'>
+              <image style='width:48rpx;height:36rpx;' class='icon' src='../../images/main/sprites.png'></image>
+              <view style='font-size:24rpx;'>筛选</view>
+            </view>
+          </navigator>
         </view>
       </view>
     </view>
@@ -36,32 +39,40 @@
     </view>
     <blobk wx:if="{{select_price}}">
       <view class='weui-cells pris_choose'>
-        <view class='weui-cell'><view class='weui-cell__bd {{ ord == 2 ? "choose" : ""}}' data-sort='2' catchtap='sortType'>价格高到低</view></view>
-        <view class='weui-cell'><view class='weui-cell__bd {{ ord == 1 ? "choose" : ""}}' data-sort='1' catchtap='sortType'>价格低到高</view></view>
+        <view class='weui-cell'>
+          <view class='weui-cell__bd {{ ord == 2 ? "choose" : ""}}' data-sort='2' catchtap='sortType'>价格高到低</view>
+        </view>
+        <view class='weui-cell'>
+          <view class='weui-cell__bd {{ ord == 1 ? "choose" : ""}}' data-sort='1' catchtap='sortType'>价格低到高</view>
+        </view>
       </view>
     </blobk>
   </view>
-  <scroll-view style='padding-top:184rpx;background-color:#f7f7f7;'  class="contentContainer" bindtouchmove="handletouchmove" bindtouchstart="handletouchstart" bindtouchend="handletouchend">
+  <scroll-view style='padding-top:184rpx;background-color:#f7f7f7;' class="contentContainer" bindtouchmove="handletouchmove" bindtouchstart="handletouchstart" bindtouchend="handletouchend">
     <view class='goods_list {{column ? "cols_2": "cols_1"}}'>
       <navigator class='gs_item' wx:for="{{allgoods}}" url='/pages/display/display?itemsign={{allgoods[index].ItemSign}}'>
         <view class='info'>
           <view class='img_cover'>
-            <image src='https://gs.jewsoft.com/{{allgoods[index].ItemImage}}' lazy-load='true' mode='aspectFill'></image>
+            <image src='https://jl.jewsoft.com/{{allgoods[index].ItemImage}}' lazy-load='true' mode='aspectFill'></image>
           </view>
           <view class='gs_item_info'>
             <view class='gs_item_title'>{{allgoods[index].ItemName}}</view>
-              <view class='gs_item_weight weui-media-box__desc'>重量：{{allgoods[index].ItemWeight}}g<text decode="emsp">&emsp;</text>金重：{{allgoods[index].ItemGoldWeight}}g</view>
-              <view class='gs_item_promotionInfo'><text class='promotionInfo'>{{allgoods[index].PromotionInfo}}</text></view>
-            <view class='gs_item_price'>￥<text class='price'>{{allgoods[index].Price}}</text>
-            <block wx:if="{{allgoods[index].LabelPrice > allgoods[index].Price}}">
-              <text class='gs_item_price1'>￥{{allgoods[index].LabelPrice}}</text>
-            </block>
+            <view class='gs_item_weight weui-media-box__desc'>重量：{{allgoods[index].ItemWeight}}g
+              <text decode="emsp">&emsp;</text>金重：{{allgoods[index].ItemGoldWeight}}g</view>
+            <view class='gs_item_promotionInfo'>
+              <text class='promotionInfo'>{{allgoods[index].PromotionInfo}}</text>
+            </view>
+            <view class='gs_item_price'>￥
+              <text class='price'>{{allgoods[index].Price}}</text>
+              <block wx:if="{{allgoods[index].LabelPrice > allgoods[index].Price}}">
+                <text class='gs_item_price1'>￥{{allgoods[index].LabelPrice}}</text>
+              </block>
             </view>
           </view>
         </view>
       </navigator>
     </view>
-    <view class='msearch_aside' bindtap='sortTypeChange'>
+    <view class='msearch_aside' catchtap='sortTypeChange'>
       <image wx:if="{{column}}" class='mode-tab_image' src='../../images/main/sort_column.png'></image>
       <image wx:else class='mode-tab_image' src='../../images/main/sort_row.png'></image>
     </view>

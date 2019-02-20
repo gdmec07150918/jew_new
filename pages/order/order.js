@@ -60,7 +60,7 @@ Page({
     var hands = new Array()
     //订单详情数据
     wx.request({
-      url: 'https://gs.jewsoft.com/Ashx/TabServer.ashx?m=tabInfoPage3',
+      url: 'https://jl.jewsoft.com/Ashx/TabServer.ashx?m=tabInfoPage3',
       method: "POST",
       data: { "tabno": tabno, "t": Math.round(Math.random() * 10000) },
       header: {
@@ -107,7 +107,7 @@ Page({
     console.log(wtgSigns); console.log(iscollect);
     var that = this
     wx.request({
-      url: 'https://gs.jewsoft.com/Ashx/TabServer.ashx?m=deletetabGoods',
+      url: 'https://jl.jewsoft.com/Ashx/TabServer.ashx?m=deletetabGoods',
       method: "POST",
       data: { "tabno": this.data.tabno, "wtgSigns": wtgSigns, "isCollect": iscollect, "t": Math.round(Math.random() * 10000) },
       header: {
@@ -164,7 +164,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: 'https://gs.jewsoft.com/ASHX/TabServer.ashx?m=tabGoodsList',
+      url: 'https://jl.jewsoft.com/ASHX/TabServer.ashx?m=tabGoodsList',
       data: {
         "tabno": "201809182865", "ItemSign": itemsign,
         "t": Number(new Date())

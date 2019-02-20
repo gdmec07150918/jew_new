@@ -1,0 +1,56 @@
+<!--pages/filter/filter.wxml-->
+<view>
+  <view class='weui-cells__title'>热门搜索
+    <block wx:if="{{word.length == 0}}">: 无</block>
+  </view>
+  <view class='weui-cells'>
+    <view class='weui-cell hotsearch'>
+      <view class='weui-cell__bd' wx:for="{{word}}" data-word='{{word[index]}}'>{{word[index]}}</view>
+    </view>
+  </view>
+  <view class='cut_box'></view>
+  <view class='inputbox'>
+    <view class='numberinputbox'>
+      <text class='fw_title'>零售价</text>
+      <input type="number" confirm-type="next" data-input='wpmin' bindinput='bindvalue' placeholder="最低价" value='{{wpmin}}'></input>
+      <text class='input-line'></text>
+      <input type="number" confirm-type="next" data-input='wpmax' bindinput='bindvalue' placeholder="最高价" value='{{wpmax}}'></input>
+    </view>
+    <view class='numberinputbox'>
+      <text class='fw_title'>连石价</text>
+      <input type="number" confirm-type="next" data-input='zwmin' bindinput='bindvalue' placeholder="最低重量" value='{{zwmin}}'></input>
+      <text class='input-line'></text>
+      <input type="number" confirm-type="next" data-input='zwmax' bindinput='bindvalue' placeholder="最高重量" value='{{zwmax}}'></input>
+    </view>
+    <view class='numberinputbox'>
+      <text class='fw_title'>金重</text>
+      <input type="number" confirm-type="next" data-input='gwmin' bindinput='bindvalue' placeholder="最低金量" value='{{gwmin}}'></input>
+      <text class='input-line'></text>
+      <input type="number" confirm-type="next" data-input='gwmax' bindinput='bindvalue' placeholder="最高金量" value='{{gwmax}}'></input>
+    </view>
+  </view>
+  <view class='cut_box'></view>
+  <view class='prop' style='padding-bottom:110rpx;'>
+    <view class='FSprop'>
+      <view class='weui-cell parent'>
+        <view class='weui-cell__hd'>平台货类</view>
+      </view>
+      <view class='prop_v'>
+        <view wx:for="{{tradeGoodsType}}" class='prop-item {{item.select ? "active" : ""}}' data-id='{{item.ID}}' data-index='{{index}}' catchtap='tradeSelect'>{{item.Name}}</view>
+      </view>
+    </view>
+    <view class='prop_list'>
+      <view class='prop_v' wx:for="{{tradeProp}}" wx:for-item="item" wx:for-index="i" data-itid='{{item.pid}}'>
+        <view class='weui-cell prop_line'>
+          <view class='weui-cell__hd'>{{item.PName}}</view>
+          <view class='weui-cell__bd'>{{item.selectText}}</view>
+        </view>
+        <view wx:for="{{item.Values}}" wx:for-item="itemValue" wx:for-index="j" class='prop-item {{itemValue.select ? "active" : ""}}' data-vid='{{itemValue.VID}}' data-i='{{i}}' data-j='{{j}}' data-val='{{itemValue.VAL}}' catchtap='propSelect'>{{itemValue.VAL}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='weui-cell search_bottom'>
+    <view class='weui-cell__bd' catchtap='rest'>重置</view>
+    <view class='weui-cell__bd' catchtap='search'>搜索</view>
+  </view>
+</view>

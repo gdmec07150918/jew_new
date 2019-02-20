@@ -19,7 +19,7 @@ Page({
     })
     var that = this
     wx.request({
-      url: 'https://gs.jewsoft.com/Ashx/FHomeServer.ashx?m=articleContent',
+      url: 'https://jl.jewsoft.com/Ashx/FHomeServer.ashx?m=articleContent',
       data: {
         "s": 3, "artno": options.artno, "t": Number(new Date())
       },

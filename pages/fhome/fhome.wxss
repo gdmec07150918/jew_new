@@ -6,6 +6,14 @@ image{width: 100%;height: 100%;}
     height: 360rpx;z-index: 9;top: 0;transition-duration: .3s;}
 .head_box{position: relative;width: 100%;height: 240rpx;background-repeat: no-repeat;
     background-size: cover;overflow: hidden;}
+.head_box::before{    content: ' ';
+    background-color: rgba(0,0,0,.4);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 9;
+    top: 0;}
 .head_seach{position: fixed; display: flex;display: -webkit-flex; width: 100%;height: 88rpx;z-index: 99}
 .head_seach .oper{width: 30rpx;height: 88rpx;}
 .head_seach .form{flex: 1;background-color: #fff;position: relative;height: 60rpx;margin: 8rpx 0;border-radius: 60rpx;display: -webkit-box; display: -webkit-flex;display: -moz-box;display: -ms-flexbox;display: flex;-webkit-box-align: center;-webkit-align-items: center;-moz-box-align: center;-ms-flex-align: center;align-items: center;}

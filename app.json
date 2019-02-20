@@ -1,7 +1,12 @@
 {
   "pages": [
-    "pages/searchGoods/searchGoods",
+    "pages/Findex/Findex",
+    "pages/Adress/Adress",
+    "pages/EditAdress/EditAdress",
+    "pages/fhome/fhome",
     "pages/grid/grid",
+    "pages/filter/filter",
+    "pages/searchGoods/searchGoods",
     "pages/UserCenter/UserCenter",
     "pages/collect/collect",
     "pages/ModifyInfo/ModifyInfo",
@@ -10,7 +15,6 @@
     "pages/discover/discover",
     "pages/orderList/orderList",
     "pages/News/News",
-    "pages/fhome/fhome",
     "pages/index/index",
     "pages/logs/logs",
     "pages/cart/cart",
@@ -29,8 +33,8 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/fhome/fhome",
-        "text": "工厂主页",
+        "pagePath": "pages/Findex/Findex",
+        "text": "首页",
         "iconPath": "images/tarbar/fhome.png",
         "selectedIconPath": "images/tarbar/fhome_active.png"
       },
@@ -39,6 +43,12 @@
         "text": "新发现",
         "iconPath": "images/tarbar/discover.png",
         "selectedIconPath": "images/tarbar/discover-active.png"
+      },
+      {
+        "pagePath": "pages/orderList/orderList",
+        "text": "订单",
+        "iconPath": "images/tarbar/order.png",
+        "selectedIconPath": "images/tarbar/order_active.png"
       },
       {
         "pagePath": "pages/UserCenter/UserCenter",

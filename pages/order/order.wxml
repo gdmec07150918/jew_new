@@ -54,7 +54,7 @@
           <view class='weui-cell'>
             <view class='weui-cell__hd'>
               <view class='img_div'>
-                <image src='https://gs.jewsoft.com/{{item.imageURL}}'></image>
+                <image src='https://jl.jewsoft.com/{{item.imageURL}}'></image>
               </view>
             </view>
             <view class='weui-cell__bd'>

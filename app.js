@@ -49,7 +49,7 @@ App({
         that.globalData.windowHeight = e.windowHeight
       }
     })
-
+    this.getUserInfo()
   },
   getUser: function(data){
     this.globalData.userInfo2 = data
@@ -65,7 +65,7 @@ App({
   //   var that = this
   //   if (this.globalData.userInfo2 == null) {
   //     wx.request({
-  //       url: 'https://gs.jewsoft.com/Ashx/UserServer.ashx?m=userCenter',
+  //       url: 'https://jl.jewsoft.com/Ashx/UserServer.ashx?m=userCenter',
   //       data: {
   //         "t": Math.round(Math.random() * 10000)
   //       },
@@ -96,7 +96,7 @@ App({
     if(that.globalData.userInfo2 == null){
       return new Promise(function (resolve, reject) {
         wx.request({
-          url: "https://gs.jewsoft.com/Ashx/UserServer.ashx?m=userCenter",
+          url: "https://jl.jewsoft.com/Ashx/UserServer.ashx?m=userCenter",
           data: {"t":Number(new Date())},
           method: "GET",
           header: {
@@ -105,16 +105,44 @@ App({
           },
           success: function (res) {
             that.globalData.userInfo2 = res.data
+            that.globalData.companysign = res.data.Info.CurrCompanySign
             resolve(res.data)
+
+            wx.request({
+              url: 'https://jl.jewsoft.com/Ashx/TabServer.ashx?m=companyTab&fsign=' + res.data.Info.CurrCompanySign,
+              method: "GET",
+              success: function (res) {
+                if (res.data.tabs.length > 0) {
+                  that.globalData.tabno = res.data.tabs[0].tabno
+                } else {
+                  //创建订单
+                  wx.request({
+                    url: 'https://jl.jewsoft.com/Ashx/TabServer.ashx?m=createCompanyTab',
+                    method: "GET",
+                    success: function (res) {
+                      if (res.data.ReturnID === 1) {
+                        that.globalData.tabno = res.data.tab_no
+                      }
+                    }
+                  })
+                }
+              }
+            })
           },
           fail: function (res) {
             reject(res);
           },
-        })
+        });
       })
     }else{
       return that.globalData.userInfo2
     }
+  },
+  //获取url参数
+  GetQueryString: function (key) {
+    var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)", "i");
+    var result = window.location.search.substr(1).match(reg);
+    return result ? decodeURIComponent(result[2]) : "";
   },
   //全局变量，常判断空时才调用接口数据，例如一些用户信息，可避免重复调用
   globalData: {
@@ -123,13 +151,16 @@ App({
     tabno: null,
     windowHeight: 0,
     windowWidth: 0,
-    collect_type: 0
+    collect_type: 0,
+    companysign: '',
+    orderStatus: -1
   },
   //接口成功并提示
   success: function (ReturnMessage) {
     wx.showToast({
       title: ReturnMessage,
-      mask: true
+      mask: true,
+      duration: 1000
     })
   },
   //接口成功，错误提示回调
@@ -137,7 +168,8 @@ App({
     wx.showToast({
       title: ReturnMessage,
       image: '../../images/main/error.png',
-      mask: true
+      mask: true,
+      duration: 2000
     })
   },
   //日期格式化

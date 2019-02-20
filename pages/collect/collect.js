@@ -18,6 +18,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.fsign)
+    this.setData({ _thisplay: parseInt(options.fsign) })
     this.getGoods()
   },
   getGoods: function () {
@@ -27,7 +29,7 @@ Page({
     })
     var that = this
     wx.request({
-      url: 'https://gs.jewsoft.com/ASHX/UserServer.ashx?m=UAPage',
+      url: 'https://jl.jewsoft.com/ASHX/UserServer.ashx?m=UAPage',
       method: "Post",
       data: {
         "getFilter": "", "getGoods": 1, "getCompany": 1, "companySigns": "",
@@ -99,7 +101,7 @@ Page({
       confirmColor: '#ffb03f',
       success: function () {
         wx.request({
-          url: 'https://gs.jewsoft.com/ASHX/UserServer.ashx?m=deleteUAGoods',
+          url: 'https://jl.jewsoft.com/ASHX/UserServer.ashx?m=deleteUAGoods',
           method: "Post",
           data: {
             "itemSign": itemSignparam, "t": Math.round(Math.random() * 10000)
@@ -131,35 +133,46 @@ Page({
   removecollect: function (e) {
     var that = this
     let sign = e.currentTarget.dataset.sign
-    wx.showActionSheet({
-      itemList: ['取消关注'],
-      itemColor: '#ff0000',
-      success: res => {
-        wx.request({
-          url: 'https://gs.jewsoft.com/ASHX/UserServer.ashx?m=deleteUACompany',
-          method: "Post",
-          data: {
-            "sign": sign, "t": Math.round(Math.random() * 10000)
-          },
-          header: {
-            'content-type': 'application/x-www-form-urlencoded'
-          },
-          success: function (res) {
-            if (res.data.ReturnID === 1) {
-              wx.showToast({
-                title: res.ReturnMessage + '',
-                duration: 800,
-                mask: true
-              })
-              that.getGoods()
-            }else{
-              app.success0(res.ReturnMessage)
+    // wx.showActionSheet({
+    //   itemList: ['取消关注'],
+    //   itemColor: '#ff0000',
+    //   success: res => {
+        
+    //   }
+    // })
+    wx.showModal({
+      title: '提示',
+      content: '取消关注该工厂？',
+      confirmColor: '#ffb03f',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'https://jl.jewsoft.com/ASHX/UserServer.ashx?m=deleteUACompany',
+            method: "Post",
+            data: {
+              "sign": sign, "t": Math.round(Math.random() * 10000)
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: function (res) {
+              if (res.data.ReturnID === 1) {
+                wx.showToast({
+                  title: res.ReturnMessage + '',
+                  duration: 800,
+                  mask: true
+                })
+                that.getGoods()
+              } else {
+                app.success0(res.ReturnMessage)
+              }
+            },
+            complete: function () {
+              // wx.hideLoading()
             }
-          },
-          complete: function () {
-            // wx.hideLoading()
-          }
-        })
+          })
+        } else if (res.cancel) {
+        }
       }
     })
   },
@@ -168,7 +181,7 @@ Page({
     var that = this
     let sign = e.currentTarget.dataset.sign
     wx.request({
-      url: 'https://gs.jewsoft.com/ASHX/UserServer.ashx?m=addUACompany',
+      url: 'https://jl.jewsoft.com/ASHX/UserServer.ashx?m=addUACompany',
       method: "Post",
       data: {
         "sign": sign, "t": Math.round(Math.random() * 10000)
@@ -208,7 +221,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({ _thisplay: app.globalData.collect_type })
+    // this.setData({ _thisplay: app.globalData.collect_type })
   },
 
   /**

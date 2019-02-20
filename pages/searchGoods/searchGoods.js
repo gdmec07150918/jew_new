@@ -21,13 +21,13 @@ Page({
     wx.getStorage({
       key: 'jewsoft_ky_arr',
       success(res) {
-        that.data.jewsoft_ky_arr = res.data
+        // that.data.jewsoft_ky_arr = res.data
         that.setData({ jewsoft_ky_arr: res.data})
         console.log(res)
       }
     })
     wx.request({
-      url: 'https://gs.jewsoft.com/ASHX/FHomeServer.ashx?m=getSearchCondition',
+      url: 'https://jl.jewsoft.com/ASHX/FHomeServer.ashx?m=getSearchCondition',
       method: "GET",
       data: {
         "prop": 1, "propType": 2, "t": Math.round(Math.random() * 10000)
@@ -71,7 +71,6 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
   },
   /**
    * 生命周期函数--监听页面卸载
@@ -138,8 +137,17 @@ Page({
   },
   //搜索货品
   searchGrid: function(){
+    try {
+      wx.removeStorageSync('dataProp')
+    } catch (e) {
+      // Do something when catch error
+    }
     var value = this.data.value;
     this.setData({ value: value})
+    this.updateHistory(value);
+  },
+  //更新历史搜索内容
+  updateHistory: function (value) {
     var keyword = this.data.jewsoft_ky_arr;
     if (value != "") {
       var haskeyword = false;
@@ -152,13 +160,13 @@ Page({
           break;
         }
       }
-      keyword.splice(0,0,value);
+      keyword.splice(0, 0, value);
     }
     wx.setStorage({
       key: 'jewsoft_ky_arr',
       data: keyword
     })
-    this.setData({ jewsoft_ky_arr: keyword})
+    this.setData({ jewsoft_ky_arr: keyword })
     wx.navigateTo({
       url: '/pages/grid/grid?txt=' + value
     })
@@ -220,7 +228,13 @@ Page({
   },
   //点击历史记录
   navigatorgrid: function (e) {
+    try {
+      wx.removeStorageSync('dataProp')
+    } catch (e) {
+      // Do something when catch error
+    }
     var text = e.currentTarget.dataset.name;
+    this.updateHistory(text);
     wx.navigateTo({
       url: '/pages/grid/grid?txt=' + text
     })

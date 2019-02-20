@@ -98,3 +98,4 @@ z-index: 1;
 .comp .weui-cell__hd{width: 140rpx;}
 image.compimg{max-height: 80rpx;max-width: 100%;}
 .weui-cell__ft image.more{height: 56rpx;width: 56rpx;}
+.del_collect{border: 1px solid #999;color: #999;border-radius: 8rpx;font-size: 22rpx;padding: 1px 8rpx;}

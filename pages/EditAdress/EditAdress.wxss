@@ -1,0 +1,6 @@
+/* pages/EditAdress/EditAdress.wxss */
+.weui-cell__hd{width: 160rpx;}
+.weui-textarea{min-height: 80rpx;width: 100%;}
+.weui-cell.top{align-items:flex-start;}
+.weui-cells__title{color: #333;}
+.save,.delete{margin: 0 30rpx;margin-top: 40rpx;}

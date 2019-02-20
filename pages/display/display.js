@@ -41,7 +41,7 @@ Page({
     })
     var that = this;
     wx.request({
-      url: 'https://gs.jewsoft.com/ASHX/ItemServer.ashx?m=itemInfo1',
+      url: 'https://jl.jewsoft.com/ASHX/ItemServer.ashx?m=itemInfo1',
       data: {
         "ItemSign": options.itemsign,"tabno":"","sid":"",
         "t": Math.round(Math.random() * 10000)
@@ -61,7 +61,7 @@ Page({
         wx.hideLoading()
       }
     })
-    this.getorder()
+    // this.getorder()
   },
   loadpage: function(){},
   /*
@@ -83,7 +83,7 @@ Page({
       };
     }
     wx.request({
-      url: 'https://gs.jewsoft.com/ASHX/UserServer.ashx',
+      url: 'https://jl.jewsoft.com/ASHX/UserServer.ashx',
       data: pdata,
       method: "POST",
       header: {
@@ -100,6 +100,13 @@ Page({
               istlove: true
             })
           }
+        }
+      },
+      complete: function(res){
+        if (res.data.ReturnID==1){
+          app.success(res.data.ReturnMessage);
+        }else{
+          app.success0(res.data.ReturnMessage);
         }
       }
     })
@@ -131,7 +138,7 @@ Page({
         mask: true
       })
       wx.request({
-        url: 'https://gs.jewsoft.com/Ashx/TabServer.ashx?m=companyTab',
+        url: 'https://jl.jewsoft.com/Ashx/TabServer.ashx?m=companyTab&fsign=' +app.globalData.companysign,
         method: "GET",
         success: function (res) {
           if (res.data.tabs.length > 0) {
@@ -139,7 +146,7 @@ Page({
           } else {
             //创建订单
             wx.request({
-              url: 'https://gs.jewsoft.com/Ashx/TabServer.ashx?m=createCompanyTab',
+              url: 'https://jl.jewsoft.com/Ashx/TabServer.ashx?m=createCompanyTab',
               method: "GET",
               success: function (res) {
                 if (res.data.ReturnID === 1) {
@@ -173,7 +180,7 @@ Page({
         mask: true
       })
       wx.request({
-        url: 'https://gs.jewsoft.com/ASHX/TabServer.ashx?m=tabGoodsList',
+        url: 'https://jl.jewsoft.com/ASHX/TabServer.ashx?m=tabGoodsList',
         data: {
           "tabno": app.globalData.tabno, "ItemSign": this.data.itemsign,
           "t": Number(new Date())
